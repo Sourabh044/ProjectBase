@@ -29,22 +29,24 @@ def appointment(request, pk):
 
 def addappointment(request):
     form = AppointmentForm() #passed the appointment Form.
-    # So now to fix the name issue we will use the trick from the Patient
-    # we will create an instance of the for befire saving it to actuak data base and then modify it and save it.
-      
+    userobj = request.user 
+    patients = userobj.patient_set.all()  #then accessing all the patients created by the user
+ 
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False) # Return an object without saving to the DB
-            obj.name = str(obj.patient) 
+            obj.name = str(obj.patient)
+            patientname = request.POST['patientchoice']
+            obj.patient = patients.objects.get(name=patientname) 
             obj.save() 
             form.save()
             return redirect('Appointments')
         else:
             form = AppointmentForm()
             # form.fields["patient"].queryset=Patient.objects.filter(user=request.user)  # from stacoverflow but doesnot work                                                              #here we are setting a query to fetch only the users patient in the patient field of the form.
-    context = {'form': form }
-    return render(request, 'Add-Appointment.html', context)
+    context = {'form': form , 'patients' : patients}
+    return render(request, 'Add-Appointment.html', context )
 
 
 
