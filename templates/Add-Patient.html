@@ -1,0 +1,15 @@
+{% extends 'homepage.html' %}
+
+{% block content %}
+<hr>
+<h1>Add a Patient</h1>
+<hr>
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form}} 
+      
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

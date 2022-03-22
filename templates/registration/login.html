@@ -1,0 +1,15 @@
+{% extends 'homepage.html' %}
+{%  load static %}
+{% block content %}
+
+
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+
+<a href="/User/signup/">New User?</a>
+
+{% endblock content %}

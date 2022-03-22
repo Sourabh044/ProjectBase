@@ -1,0 +1,16 @@
+{% include 'homepage.html' %}
+
+{% block content %}
+<hr>
+<h1>Delete Patient</h1>
+<hr>
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to cancel the Appointment for "{{Appointment.name}}"?</p>
+    <a href="{%url 'Appointments' %}">Go Back</a>
+    <!-- /Delete-Appointment/{={Appointment.id_number} =}/ -->
+    <input type="submit" value="Delete">
+</form>
+{% endblock content %}

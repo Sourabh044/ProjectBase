@@ -1,0 +1,23 @@
+{% extends 'homepage.html' %} {% block content %}
+<hr />
+<h1>Add a Appointment</h1>
+<hr />
+
+<form action="" method="post">
+  {% csrf_token %}
+  <label for="select">Select Patient</label>
+  <select >
+      <!-- <option>Dummy</option> -->
+    {% for p in patients %}
+    {% endfor %}
+  </select>
+  <br />
+  {{form.description.label}} {{form.description}}
+  <br />
+  {{form.date_requested.label}} {{form.date_requested}}
+  <br />
+  {{form.Dr_Name.label}} {{form.Dr_Name}}
+
+  <input type="submit" value="Submit" />
+</form>
+{% endblock content %}

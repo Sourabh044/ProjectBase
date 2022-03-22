@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{Appointment.name}}</title>
+</head>
+<body>
+    <h1>{{Appointment.name}}</h1>
+<hr>
+    <h5>Prescription</h5>
+    <!-- this is the thing refered inn the models of Prescription -->
+        <!-- {% for i in  -->
+        <!-- Appointment.prescription_set.all %} -->
+    {% for i in prescription %}
+    <p>{{i.prescription_notes}}</p>
+    <p>{{i.prescribed_on}}</p>
+    <hr>
+    {% endfor %}
+    <a href="{%url 'Appointments' %}">Go Back  </a>
+    <br>
+    <a href="/Delete-Appointment/{{Appointment.id_number}}/">Delete</a>
+    {% block content %}
+
+    {% endblock content %}
+</body>
+</html>
